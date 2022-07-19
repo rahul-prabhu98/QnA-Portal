@@ -22,5 +22,23 @@ module.exports = function (expressApp) {
 
     // -- Meeting/Event
 
-    
+    const eventController = require('../controller/event-controller');
+    /**
+     * Routes '/events/' endpoints to get?p='<field>'&val='<Value>' OR Create a new event
+     *
+     * @param expressApp
+     */
+    expressApp.route('/events')
+        .get(eventController.list)
+        .post(eventController.post);
+
+    /**
+     * Routes '/events/:eventID' endpoints to get, Update, Delete an event
+     *
+     * @param 'events/:eventID'
+     */
+    expressApp.route('/events/:eventID')
+        .get(eventController.get)
+        .put(eventController.put)
+        .delete(eventController.delete);
 };
