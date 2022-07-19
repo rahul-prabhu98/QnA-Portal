@@ -60,3 +60,22 @@ exports.post = function (request, response) {
         .then(resolve)
         .catch(errorHandler(response));
 };
+
+
+/**
+ * Gets an event with specified ID
+ * returns event JSON object.
+ *
+ * @param request
+ * @param response
+ */
+exports.get = function (request, response) {
+    const resolve = (data) => {
+        response.status(200);
+        response.json(data);
+    };
+    eventService.get(request.params.eventID)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+
