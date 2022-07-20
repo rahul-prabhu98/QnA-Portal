@@ -51,7 +51,7 @@ exports.list = function (request, response) {
  * @param response
  */
 exports.post = function (request, response) {
-    const eventObj = Object.assign({}, request.body);
+    let eventObj = Object.assign({}, request.body);
     const resolve = (data) => {
         response.status(200);
         response.json(data);
@@ -79,3 +79,38 @@ exports.get = function (request, response) {
         .catch(errorHandler(response));
 };
 
+/**
+ * Updates and returns a event object in JSON.
+ *
+ * @param request
+ * @param response
+ */
+exports.put = function (request, response) {
+    let eventObj = Object.assign({}, request.body);
+    const resolve = (data) => {
+        response.status(200);
+        response.json(data);
+    };
+    eventObj._id = request.params.eventID;
+    eventService.update(eventService)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+
+/**
+ * Deletes a event object.
+ *
+ * @param request
+ * @param response
+ */
+exports.delete = function (request, response) {
+    const resolve = (data) => {
+        response.status(200);
+        response.json({
+            message: 'event Successfully deleted'
+        });
+    };
+    eventService.delete(request.params.eventID)
+        .then(resolve)
+        .catch(errorHandler(response));
+};

@@ -1,4 +1,5 @@
 'use strict';
+const eventModel = require('./../model/event');
 /**
  * require Mongoose object.
  */

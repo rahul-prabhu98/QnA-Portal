@@ -21,10 +21,12 @@ let eventSchema = new Schema({
     },
     attendees: [String],
     requestCreationTime: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     requestModifyTime: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     icsFile : {
         data: Buffer,
@@ -46,7 +48,8 @@ let eventSchema = new Schema({
         required: "requestStatus is Required of type ENUM"
     },
     isActive: {
-        type: Boolean
+        type: Boolean,
+        default: true
     }
 }, {
     versionKey: false
