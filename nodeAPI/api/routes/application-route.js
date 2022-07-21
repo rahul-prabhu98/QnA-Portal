@@ -11,8 +11,9 @@
  */
 module.exports = function (expressApp) {
     // -- Users
-
-
+    const userController = require('../controller/user-controller');
+    expressApp.route('/signup')
+        .post(userController.signup)
 
     //-- Question
 

@@ -5,7 +5,7 @@
         Name: Ruchit Gandhi     NUID: 001067481
         Name: Darshan Dedhia    NUID: 001054816
         Name: Sanket Pimple     NUID: 001086416
-        Name: Ashita Dashottar  NUID: 001087490
+        Name: Ashita Dashottar  NUID: 00
 
 # `angular-seed` — the seed for AngularJS apps
 
