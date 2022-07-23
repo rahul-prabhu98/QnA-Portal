@@ -4,9 +4,7 @@ const port = process.env.port || 3000;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-
-mongoose.connect('mongodb+srv://mongo-db-user:Asd1234@mongocluster-2bbjv.mongodb.net/mongoCloudDB?retryWrites=true&w=majority', {
-
+mongoose.connect('mongodb+srv://mongo-db-user:Asd1234@mongocluster-2bbjv.mongodb.net/test?retryWrites=true&w=majority', {
     useUnifiedTopology: true,
     useNewUrlParser: true
 });

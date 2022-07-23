@@ -23,6 +23,19 @@ module.exports = function (expressApp) {
     // -- Answer
 
 
+    // -- Tags
+    const tagController = require('../controller/tag-controller');
+
+    expressApp.route('/tags')
+        .get(tagController.list)
+        .post(tagController.post);
+
+    expressApp.route('/tags/:tagID')
+        .get(tagController.get)
+        .put(tagController.put)
+        .delete(tagController.delete);
+
+
     // -- Meeting/Event
 
     const eventController = require('../controller/event-controller');
