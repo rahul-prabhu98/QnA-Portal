@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 
 
 mongoose.connect('mongodb+srv://mongo-db-user:Asd1234@mongocluster-2bbjv.mongodb.net/mongoCloudDB?retryWrites=true&w=majority', {
-
     useUnifiedTopology: true,
     useNewUrlParser: true
 });
@@ -20,7 +19,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
-res.header("Access-Control-Allow-Origin", "*");
+req.header("Access-Control-Allow-Origin", "*");
 res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 res.header("Access-Control-Allow-Methods", "*");
 next();

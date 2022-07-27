@@ -14,9 +14,7 @@ module.exports = function (expressApp) {
 
     const userController = require('../controller/user-controller');
     expressApp.route('/signup')
-        .post(userController.signup);
-    expressApp.route('/login')
-        .post(userController.login);
+        .post(userController.signup)
 
 
     //-- Question
