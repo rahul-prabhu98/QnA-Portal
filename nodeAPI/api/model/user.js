@@ -6,7 +6,7 @@ let userSchema =new Schema({
     userName: {
         type: String,
         required: "User Name cannot be empty",
-        unique: true,
+        unique: "Username already exist",
         trim: true
     },
 
@@ -46,8 +46,7 @@ let userSchema =new Schema({
     },
 
     createdDate: {
-        type: Date,
-        default: Date.now
+        type: Date
     }
 }, {
     versionKey: false
