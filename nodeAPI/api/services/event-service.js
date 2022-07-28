@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 /**
  * defining the database/collection for Mongoose object.
  */
-let eventMongoose = mongoose.model('eventDB');
+let eventMongoose = mongoose.model('EventModel');
 
 
 /**

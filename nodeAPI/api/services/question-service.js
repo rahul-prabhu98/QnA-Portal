@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 /**
  * defining the database/collection for Mongoose object
  */
-let questionMongoose = mongoose.model('questionDB');
+let questionMongoose = mongoose.model('QuestionModel');
 
 /**
  *
@@ -32,11 +32,11 @@ exports.create = function (questionObj) {
 
 /**
  *
- * @param questionID
+ * @param questionId
  * @returns {RegExpExecArray}
  */
-exports.get = function (questionID) {
-    return questionMongoose.findById(questionID).exec();
+exports.get = function (questionId) {
+    return questionMongoose.findById(questionId).exec();
 };
 
 /**

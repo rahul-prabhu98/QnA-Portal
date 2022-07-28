@@ -3,12 +3,15 @@ const app = express();
 const port = process.env.port || 3000;
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const mongoDBUrl = 'mongodb+srv://mongo-db-user:Asd1234@mongocluster-2bbjv.mongodb.net/mongoCloudDB?retryWrites=true&w=majority';
 
-
-mongoose.connect('mongodb+srv://mongo-db-user:Asd1234@mongocluster-2bbjv.mongodb.net/mongoCloudDB?retryWrites=true&w=majority', {
+mongoose.connect(mongoDBUrl, {
     useUnifiedTopology: true,
     useNewUrlParser: true
 });
+var db = mongoose.connection;
+//Bind connection to error event (to get notification of connection errors)
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 mongoose.Promise = global.Promise;
 

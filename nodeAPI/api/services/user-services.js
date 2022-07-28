@@ -1,7 +1,7 @@
 'use strict';
 const userInit = require('../model/user');
 const mongoose = require('mongoose'),
-User = mongoose.model('user');
+User = mongoose.model('UserModel');
 
 exports.newUser = function (user) {
     const newUser = new User(user);

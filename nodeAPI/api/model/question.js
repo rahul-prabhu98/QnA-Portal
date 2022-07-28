@@ -13,10 +13,16 @@ const Schema = mongoose.Schema;
  * @type {mongoose.Schema}
  */
 let questionSchema = new Schema({
-    questionID: {
+   questionId: { 
+        type: Number
+    },
+    userId: {
+        type: Number
+    },
+    title: {
         type: String
     },
-    userName: {
+    description: {
         type: String
     },
     dateCreated: {
@@ -30,18 +36,41 @@ let questionSchema = new Schema({
     tags: [{
         type: String
     }],
-    isActive: {
-        type: Boolean,
-        default: true
-    },
+    answers: [
+        {
+            userId : {
+                type : Number
+            },
+            answer: {
+                type: String
+            },
+            upvotes : {
+                type: Number
+            },
+            downvotes : {
+                type: Number
+            },
+            dateCreated: {
+                type: Date,
+                default: Date.now()
+            },
+            isActive : {
+                type : Boolean
+            }
+        }
+    ],   
     spamCount: {
         type: Number,
         min: 0
     },
-    tagCategory: {
-        type: String,
-        default: 'general'
+    isActive: {
+        type: Boolean,
+        default: true
     }
+    // tagCategory: {
+    //     type: String,
+    //     default: 'general'
+    // } Currently not needed
 }, {
     versionKey: false
 });
@@ -54,4 +83,4 @@ questionSchema.set('toJSON', {
     virtuals: true
 });
 
-module.exports = mongoose.model('questionDB', questionSchema);
+module.exports = mongoose.model('QuestionModel', questionSchema);
