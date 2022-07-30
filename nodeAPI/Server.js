@@ -31,4 +31,4 @@ next();
 let initApp = require('./api/app');
 initApp(app);
 app.listen(port);
-console.log("Server for ToDo List listening on port: " + port);
+console.log("AskHusky server listening on port: " + port);

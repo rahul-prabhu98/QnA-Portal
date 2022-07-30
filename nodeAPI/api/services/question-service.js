@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 /**
  * defining the database/collection for Mongoose object
  */
-let questionMongoose = mongoose.model('QuestionModel');
+let questionMongoose = mongoose.model('questions');
 
 /**
  *
@@ -26,8 +26,8 @@ exports.search = function (queryParameter) {
  * @param questionObj
  */
 exports.create = function (questionObj) {
-    const newEvent = new questionMongoose(questionObj);
-    return newEvent.save();
+    const newQuestion = new questionMongoose(questionObj);
+    return newQuestion.save();
 };
 
 /**

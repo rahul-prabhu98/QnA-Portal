@@ -83,4 +83,4 @@ questionSchema.set('toJSON', {
     virtuals: true
 });
 
-module.exports = mongoose.model('QuestionModel', questionSchema);
+module.exports = mongoose.model('questions', questionSchema);
