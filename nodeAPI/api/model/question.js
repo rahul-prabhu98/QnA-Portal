@@ -58,7 +58,10 @@ let questionSchema = new Schema({
                 type : Boolean
             }
         }
-    ],   
+    ],
+    verifiedAnswerId : {
+        type :  String
+    }, 
     spamCount: {
         type: Number,
         min: 0
