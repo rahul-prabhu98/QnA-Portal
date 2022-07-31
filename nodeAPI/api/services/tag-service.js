@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 /**
  * defining the database/collection for Mongoose object
  */
-let tagMongoose = mongoose.model('tagDB');
+let tagMongoose = mongoose.model('tags');
 
 /**
  *

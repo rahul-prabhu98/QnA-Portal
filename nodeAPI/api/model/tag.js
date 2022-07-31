@@ -44,4 +44,4 @@ tagSchema.set('toJSON', {
     virtuals: true
 });
 
-module.exports = mongoose.model('tagDB', tagSchema);
+module.exports = mongoose.model('tags', tagSchema);

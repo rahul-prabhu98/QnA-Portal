@@ -28,11 +28,11 @@ module.exports = function (expressApp) {
         .post(questionController.post);
 
     /**
-     * Routes '/questions/:questionID' endpoints to get, Update, Delete a question
+     * Routes '/questions/:id' endpoints to get, Update, Delete a question
      *
-     * @param 'questions/:questionID'
+     * @param 'questions/:id'
      */
-    expressApp.route('/questions/:questionID')
+    expressApp.route('/questions/:id')
         .get(questionController.get)
         .put(questionController.put)
         .delete(questionController.delete);
