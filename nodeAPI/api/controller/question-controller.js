@@ -79,7 +79,7 @@ exports.put = function (request, response) {
         response.status(200);
         response.json(question);
     };
-    questionObj._id = request.params.id;
+    questionObj._id = request.params.questionID;
     questionService.update(questionService)
         .then(resolve)
         .catch(errorHandler(response));

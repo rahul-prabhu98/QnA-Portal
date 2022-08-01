@@ -64,4 +64,4 @@ eventSchema.set('toJSON', {
     virtuals: true
 });
 
-module.exports = mongoose.model('events', eventSchema);
+module.exports = mongoose.model('EventModel', eventSchema);
