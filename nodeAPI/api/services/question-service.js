@@ -33,10 +33,12 @@ exports.create = function (questionObj) {
 /**
  *
  * @param questionId
- * @returns {RegExpExecArray}
+ * @returns promise
  */
 exports.get = function (questionId) {
-    return questionMongoose.findById(questionId).exec();
+    const getPromise = questionMongoose.findById(questionId).exec();
+    console.log(getPromise);
+    return getPromise;
 };
 
 /**

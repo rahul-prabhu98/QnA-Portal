@@ -29,7 +29,7 @@ exports.list = function (request, response) {
     };
 
     if(!(p || val)){
-        questionService.search({ p : val }).then(resolve).catch(errorHandler(response));
+        questionService.search({ [p] : val }).then(resolve).catch(errorHandler(response));
     }else{
         questionService.search({}).then(resolve).catch(errorHandler(response));
     }
@@ -79,11 +79,16 @@ exports.put = function (request, response) {
         response.status(200);
         response.json(question);
     };
-    questionObj._id = request.params.questionID;
-    questionService.update(questionService)
+    questionObj._id = request.params.questionId;
+    questionService.update(questionObj)
         .then(resolve)
         .catch(errorHandler(response));
 };
+
+//TODO complete below
+/*exports.putAnswer = function (request, response) {
+    
+};*/
 
 /**
  * Deletes a question object.

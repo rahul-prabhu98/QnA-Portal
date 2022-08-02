@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
 req.header("Access-Control-Allow-Origin", "*");
+req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 res.header("Access-Control-Allow-Methods", "*");
 next();
