@@ -29,7 +29,7 @@ exports.list = function (request, response) {
     };
 
     if(!(p || val)){
-        questionService.search({ p : val }).then(resolve).catch(errorHandler(response));
+        questionService.search({ [p] : val }).then(resolve).catch(errorHandler(response));
     }else{
         questionService.search({}).then(resolve).catch(errorHandler(response));
     }
@@ -79,10 +79,31 @@ exports.put = function (request, response) {
         response.status(200);
         response.json(question);
     };
-    questionObj._id = request.params.id;
-    questionService.update(questionService)
+    questionObj._id = request.params.questionId;
+    questionService.update(questionObj)
         .then(resolve)
         .catch(errorHandler(response));
+};
+
+/** 
+ * Adds a new answer to the given question
+ * @param request
+ * @param response
+ * 
+*/
+exports.putAnswer = function (request, response) {
+    let answerObj = Object.assign({},request.body);
+    const resolve = (answer) => {
+        response.status(200);
+        response.json(answer);
+    };
+        let questionId = request.params.questionId;
+        console.log(questionId);
+        console.log(answerObj);
+        questionService.insertAnswer(questionId, answerObj)
+            .then(resolve)
+            .catch(errorHandler(response));
+    // }
 };
 
 /**

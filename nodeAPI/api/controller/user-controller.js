@@ -3,7 +3,6 @@
 
 const userService = require('../services/user-services');
 const User = require('../model/user');
-const Tag = require('../model/tag')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
@@ -40,14 +39,6 @@ exports.signup = function (req, res) {
                                 else {
                                     const newUser = new User({
                                         //_id: new mongoose.Types.ObjectId,
-                                        firstName: req.body.firstName,
-                                        lastName: req.body.lastName,
-                                        phoneNo: req.body.phoneNo,
-                                        collegeName: req.body.collegeName,
-                                        degree: req.body.degree,
-                                        course: req.body.course,
-                                        graduationYear: req.body.graduationYear,
-
                                         userName: req.body.userName,
                                         password: hash,
                                         userStatus: req.body.userStatus,
@@ -57,15 +48,6 @@ exports.signup = function (req, res) {
                                         updatedDate: Date.now,
                                         createdDate: Date.now
                                     });
-
-                                    req.body.interestedTags.forEach((tag) => {
-                                        let newTag = new Tag({
-                                            tagName: tag.tagName
-                                        });
-                                        newUser.interestedTags.push(newTag);
-
-                                    });
-
                                     const resolve = (user) => {
                                         res.status(200);
                                         res.json({
@@ -133,58 +115,6 @@ exports.login = function(req, res){
                 console.log(err);
                 renderErrorResponse(res);
             });
-
-};
-
-exports.changePassword = function(req, res){
-    const authResult = () => {
-
-        return res.status(200).json({
-            statusCode: '409',
-            message: 'Authentication Failed'
-        });};
-    userService.fetchData('userName', req.body.userName)
-        .then(
-            (user) => {
-                if (user.length < 1) {
-                    return authResult();
-                };
-                bcrypt.compare(req.body.oldPassword, user[0].password, (err, result) => {
-                    if (err) {
-                        return authResult();
-                    };
-                    if (result) {
-                        bcrypt.hash(req.body.newPassword, 10, (err, hash) => {
-                            if (err) {
-                                return res.status(500).json({
-                                    statusCode: '409',
-                                    message: 'Internal Server Error occured',
-                                    data: []
-                                });
-                            } else {
-                                userService.updateData(req.body.userName, "password", hash).then(
-                                    (doc, err) => {
-                                        if (err) {
-                                            return authResult();
-                                        }
-                                        return res.status(200).json({
-                                            statusCode: '409',
-                                            message: 'Password Update Successful'
-                                        });
-
-                                    }
-                                )
-                            }
-                        });
-                    } else {
-                        return authResult();
-                    };
-                });
-            }
-        )
-        .catch((err) => {
-            renderErrorResponse(res);
-        });
 
 };
 

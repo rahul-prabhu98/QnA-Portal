@@ -17,8 +17,6 @@ module.exports = function (expressApp) {
         .post(userController.signup);
     expressApp.route('/login')
         .post(userController.login);
-    expressApp.route('/user/changePassword')
-        .post(userController.changePassword);
 
 
     //-- Question
@@ -34,14 +32,15 @@ module.exports = function (expressApp) {
      *
      * @param 'questions/:id'
      */
-    expressApp.route('/questions/:id')
+    expressApp.route('/questions/:questionId')
         .get(questionController.get)
         .put(questionController.put)
         .delete(questionController.delete);
 
     // -- Answer
 
-
+    expressApp.route('/questions/:questionId/answers')
+        .put(questionController.putAnswer);
     // -- Tags
 
     const tagController = require('../controller/tag-controller');

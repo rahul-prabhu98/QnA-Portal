@@ -10,7 +10,6 @@ mongoose.connect(mongoDBUrl, {
     useNewUrlParser: true
 });
 var db = mongoose.connection;
-var cors = require('cors');
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -24,11 +23,11 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
 req.header("Access-Control-Allow-Origin", "*");
+req.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 res.header("Access-Control-Allow-Methods", "*");
 next();
 });
-app.use(cors());
 
 let initApp = require('./api/app');
 initApp(app);

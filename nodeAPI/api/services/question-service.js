@@ -33,10 +33,12 @@ exports.create = function (questionObj) {
 /**
  *
  * @param questionId
- * @returns {RegExpExecArray}
+ * @returns promise
  */
 exports.get = function (questionId) {
-    return questionMongoose.findById(questionId).exec();
+    const getPromise = questionMongoose.findById(questionId).exec();
+    console.log(getPromise);
+    return getPromise;
 };
 
 /**
@@ -48,6 +50,20 @@ exports.update = function (questionObj) {
     questionObj.dateModified = new Date();
     return questionMongoose.findOneAndUpdate({_id: questionObj._id}, questionObj).exec();
 };
+
+exports.insertAnswer = function (questionId, answerObj) {    
+    // const targetQuestion = questionMongoose.findOne({ _id: question._id});
+    questionMongoose.update(
+        { _id: questionId},
+        { $push: {answers: answerObj} }
+    ).exec();
+    //  targetQuestion.answers.push({answerObj});
+    //  targetQuestion.save(function (err, answerObj){
+    //      if(err) return err;
+    //      return answerObj;
+    //  } );
+    return answerObj;
+}
 
 /**
  *
