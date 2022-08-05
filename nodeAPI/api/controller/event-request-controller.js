@@ -1,7 +1,7 @@
 
 
-let eventService = require('./../services/event-service');
-let eventObj = require('./../model/event');
+let eventRequestService = require('../services/event-request-service');
+let eventRequestObj = require('./../model/event-request');
 /**
  * handleErrorFunction a function to handle the http errors when called
  *
@@ -20,7 +20,28 @@ let errorHandler = function(response) {
 };
 
 /**
- * Returns a list of todoObj in JSON based on the
+ * Creates a new event Request with the request JSON and
+ * returns event JSON object.
+ *
+ * @param request
+ * @param response
+ */
+exports.post = function (request, response) {
+    let myEventRequestObj = Object.assign({}, request.body);
+    const resolve = (data) => {
+        response.status(200);
+        response.json(data);
+    };
+    eventRequestService.create(myEventRequestObj)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+// -------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+/**
+ * Returns a list of event request in JSON based on the
  * search parameters.
  *
  * @param request
@@ -44,23 +65,6 @@ exports.list = function (request, response) {
 };
 
 
-/**
- * Creates a new event with the request JSON and
- * returns event JSON object.
- *
- * @param request
- * @param response
- */
-exports.post = function (request, response) {
-    let eventObj = Object.assign({}, request.body);
-    const resolve = (data) => {
-        response.status(200);
-        response.json(data);
-    };
-    eventService.create(eventObj)
-        .then(resolve)
-        .catch(errorHandler(response));
-};
 
 
 
@@ -84,6 +88,23 @@ exports.get = function (request, response) {
 };
 
 /**
+ * Gets an event with specified ID
+ * returns event JSON object.
+ *
+ * @param request
+ * @param response
+ */
+exports.orgGet = function (request, response) {
+    const resolve = (data) => {
+        response.status(200);
+        response.json(data);
+    };
+    eventService.get(request.params.eventRequestID)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+
+/**
  * Updates and returns a event object in JSON.
  *
  * @param request
@@ -96,7 +117,7 @@ exports.put = function (request, response) {
         response.json(data);
     };
     eventObj._id = request.params.eventID;
-    eventService.update(eventService)
+    eventService.update(eventObj)
         .then(resolve)
         .catch(errorHandler(response));
 };

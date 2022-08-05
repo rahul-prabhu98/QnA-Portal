@@ -6,7 +6,7 @@ let userSchema =new Schema({
     userName: {
         type: String,
         required: "User Name cannot be empty",
-        unique: "Username already exist",
+        unique: true,
         trim: true
     },
 
@@ -46,11 +46,12 @@ let userSchema =new Schema({
     },
 
     createdDate: {
-        type: Date
+        type: Date,
+        default: Date.now
     }
 }, {
     versionKey: false
 });
 
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('user', userSchema);
