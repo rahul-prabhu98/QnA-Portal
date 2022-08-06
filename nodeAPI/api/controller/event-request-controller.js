@@ -1,6 +1,6 @@
 
 
-let eventRequestService = require('../services/event-request-service');
+let eventService = require('../services/event-service');
 let eventRequestObj = require('./../model/event-request');
 /**
  * handleErrorFunction a function to handle the http errors when called
@@ -32,7 +32,7 @@ exports.post = function (request, response) {
         response.status(200);
         response.json(data);
     };
-    eventRequestService.create(myEventRequestObj)
+    eventService.create(myEventRequestObj)
         .then(resolve)
         .catch(errorHandler(response));
 };
@@ -82,7 +82,7 @@ exports.get = function (request, response) {
         response.status(200);
         response.json(data);
     };
-    eventService.get(request.params.eventID)
+    eventService.get(request.params.eventRequestID)
         .then(resolve)
         .catch(errorHandler(response));
 };
@@ -99,7 +99,43 @@ exports.orgGet = function (request, response) {
         response.status(200);
         response.json(data);
     };
-    eventService.get(request.params.eventRequestID)
+    eventService.orgGet(request.params.organizerID)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+
+/**
+ * Gets an event with specified ID
+ * returns event JSON object.
+ *
+ * @param request
+ * @param response
+ */
+exports.attGet = function (request, response) {
+    const resolve = (data) => {
+        response.status(200);
+        response.json(data);
+    };
+    eventService.attGet(request.params.attendeeID)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+
+
+/**
+ * Updates and returns a event object in JSON.
+ *
+ * @param request
+ * @param response
+ */
+exports.put = function (request, response) {
+    let eventRequestObj = Object.assign({}, request.body);
+    const resolve = (data) => {
+        response.status(200);
+        response.json(data);
+    };
+    eventRequestObj._id = request.params.eventRequestID;
+    eventService.update(eventRequestObj)
         .then(resolve)
         .catch(errorHandler(response));
 };
@@ -110,14 +146,32 @@ exports.orgGet = function (request, response) {
  * @param request
  * @param response
  */
-exports.put = function (request, response) {
-    let eventObj = Object.assign({}, request.body);
+exports.orgPut = function (request, response) {
+    let eventRequestObj = Object.assign({}, request.body);
+    const resolve = (data) => {
+        response.status(200);
+        response.json(data);
+    };
+    eventObj._id = request.params.organizerID;
+    eventService.update(eventRequestObj)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+
+/**
+ * Updates and returns a event object in JSON.
+ *
+ * @param request
+ * @param response
+ */
+exports.attPut = function (request, response) {
+    let eventRequestObj = Object.assign({}, request.body);
     const resolve = (data) => {
         response.status(200);
         response.json(data);
     };
     eventObj._id = request.params.eventID;
-    eventService.update(eventObj)
+    eventService.update(eventRequestObj)
         .then(resolve)
         .catch(errorHandler(response));
 };
@@ -129,6 +183,42 @@ exports.put = function (request, response) {
  * @param response
  */
 exports.delete = function (request, response) {
+    const resolve = (data) => {
+        response.status(200);
+        response.json({
+            message: 'event Successfully deleted'
+        });
+    };
+    eventService.delete(request.params.eventID)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+
+/**
+ * Deletes a event object.
+ *
+ * @param request
+ * @param response
+ */
+exports.orgDelete = function (request, response) {
+    const resolve = (data) => {
+        response.status(200);
+        response.json({
+            message: 'event Successfully deleted'
+        });
+    };
+    eventService.delete(request.params.eventID)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
+
+/**
+ * Deletes a event object.
+ *
+ * @param request
+ * @param response
+ */
+exports.attDelete = function (request, response) {
     const resolve = (data) => {
         response.status(200);
         response.json({
