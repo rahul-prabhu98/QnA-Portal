@@ -40,24 +40,6 @@ exports.get = function (eventID) {
 };
 
 /**
- * Returns the event object matching the id.
- *
- * @param {string} eventID {Id of the event object}
- */
-exports.orgGet = function (organizerID) {
-    return eventMongoose.find({organizer : eventID}).exec();
-};
-
-/**
- * Returns the event object matching the id.
- *
- * @param {string} eventID {Id of the event object}
- */
-exports.attGet = function (attendeeID) {
-    return eventMongoose.find({ attendee: { $all: [ attendeeID ] } }).exec();
-};
-
-/**
  * Updates and returns the event object.
  *
  * @param {Object} event {event object}
