@@ -116,6 +116,7 @@ exports.attGet = function (request, response) {
         response.status(200);
         response.json(data);
     };
+
     eventService.attGet(request.params.attendeeID)
         .then(resolve)
         .catch(errorHandler(response));

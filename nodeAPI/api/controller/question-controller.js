@@ -98,8 +98,8 @@ exports.putAnswer = function (request, response) {
         response.json(answer);
     };
         let questionId = request.params.questionId;
-        // console.log(questionId);
-        // console.log(answerObj);
+        console.log(questionId);
+        console.log(answerObj);
         questionService.insertAnswer(questionId, answerObj)
             .then(resolve)
             .catch(errorHandler(response));

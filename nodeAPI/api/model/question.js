@@ -12,8 +12,8 @@ const Schema = mongoose.Schema;
  * Subdocument for answers
  */
 let answerSubSchema = new Schema({
-            userName : {
-                type : String
+            userId : {
+                type : Number
             },
             answer: {
                 type: String
@@ -41,8 +41,8 @@ let questionSchema = new Schema({
    questionId: { 
         type: Number
     },
-    userName: {
-        type: String
+    userId: {
+        type: Number
     },
     title: {
         type: String

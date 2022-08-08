@@ -25,7 +25,8 @@ let eventRequestSchema = new Schema({
     },
     date: {
         type: Date,
-        default: Date.now
+        default: Date.now,
+        required: "date cannot be empty",
     },
     time: {
         type: String
@@ -38,7 +39,11 @@ let eventRequestSchema = new Schema({
         required: "Organizer userName cannot be empty",
         trim: true
     },
-    attendees: [{type:String}],
+    attendees: {
+        type: String,
+        required: "attendees userName cannot be empty",
+        trim: true
+    },
     requestCreationTime: {
         type: Date,
         default: Date.now
@@ -49,9 +54,7 @@ let eventRequestSchema = new Schema({
     },
    requestStatus: {
         type: String,
-        enum: ['INITIATED', 'SEEN','AUDIT','ACCEPTED','DENIED'],
-        required: "requestStatus is Required of type ENUM",
-       default: 'INITIATED'
+       default: "INITIATED"
     },
     requestStatusReason: {
         type: String
