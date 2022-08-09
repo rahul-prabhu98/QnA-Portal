@@ -38,6 +38,7 @@ exports.signup = function (req, res) {
                                     });
                                 }
                                 else {
+                                    console.log(req.body.password);
                                     const newUser = new User({
                                         //_id: new mongoose.Types.ObjectId,
                                         firstName: req.body.firstName,
@@ -57,14 +58,14 @@ exports.signup = function (req, res) {
                                         updatedDate: Date.now,
                                         createdDate: Date.now
                                     });
-
+                                    if (req.body.interestedTags != null){
                                     req.body.interestedTags.forEach((tag) => {
                                         let newTag = new Tag({
                                             tagName: tag.tagName
                                         });
                                         newUser.interestedTags.push(newTag);
 
-                                    });
+                                    });};
 
                                     const resolve = (user) => {
                                         res.status(200);
@@ -104,6 +105,7 @@ exports.login = function(req, res){
                     };
                     bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                         if (err) {
+
                             return authResult();
                         };
                         if (result) {

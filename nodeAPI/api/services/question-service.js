@@ -51,20 +51,6 @@ exports.update = function (questionObj) {
     return questionMongoose.findOneAndUpdate({_id: questionObj._id}, questionObj).exec();
 };
 
-exports.insertAnswer = function (questionId, answerObj) {    
-    // const targetQuestion = questionMongoose.findOne({ _id: question._id});
-    questionMongoose.update(
-        { _id: questionId},
-        { $push: {answers: answerObj} }
-    ).exec();
-    //  targetQuestion.answers.push({answerObj});
-    //  targetQuestion.save(function (err, answerObj){
-    //      if(err) return err;
-    //      return answerObj;
-    //  } );
-    return answerObj;
-}
-
 /**
  *
  * @param questionID

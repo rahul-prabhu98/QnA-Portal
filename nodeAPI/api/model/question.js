@@ -9,31 +9,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 /**
- * Subdocument for answers
- */
-let answerSubSchema = new Schema({
-            userId : {
-                type : Number
-            },
-            answer: {
-                type: String
-            },
-            upvotes : {
-                type: Number
-            },
-            downvotes : {
-                type: Number
-            },
-            dateCreated: {
-                type: Date,
-                default: Date.now()
-            },
-            isActive : {
-                type : Boolean
-            }
-});
-
-/**
  * Schema defined for Question object
  * @type {mongoose.Schema}
  */
@@ -62,7 +37,27 @@ let questionSchema = new Schema({
         type: String
     }],
     answers: [
-        answerSubSchema
+        {
+            userId : {
+                type : Number
+            },
+            answer: {
+                type: String
+            },
+            upvotes : {
+                type: Number
+            },
+            downvotes : {
+                type: Number
+            },
+            dateCreated: {
+                type: Date,
+                default: Date.now()
+            },
+            isActive : {
+                type : Boolean
+            }
+        }
     ],
     verifiedAnswerId : {
         type :  String
