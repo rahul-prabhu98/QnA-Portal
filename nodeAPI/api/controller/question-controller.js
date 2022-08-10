@@ -85,10 +85,26 @@ exports.put = function (request, response) {
         .catch(errorHandler(response));
 };
 
-//TODO complete below
-/*exports.putAnswer = function (request, response) {
-    
-};*/
+/** 
+ * Adds a new answer to the given question
+ * @param request
+ * @param response
+ * 
+*/
+exports.putAnswer = function (request, response) {
+    let answerObj = Object.assign({},request.body);
+    const resolve = (answer) => {
+        response.status(200);
+        response.json(answer);
+    };
+        let questionId = request.params.questionId;
+        // console.log(questionId);
+        // console.log(answerObj);
+        questionService.insertAnswer(questionId, answerObj)
+            .then(resolve)
+            .catch(errorHandler(response));
+    // }
+};
 
 /**
  * Deletes a question object.

@@ -99,16 +99,19 @@ exports.login = function(req, res){
         userService.fetchData('userName', req.body.userName)
             .then(
                 (user) => {
+
                     if (user.length < 1) {
                         console.log("In here 1");
                         return authResult();
                     };
+
                     bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                         if (err) {
 
                             return authResult();
                         };
                         if (result) {
+                            user[0].password = "";
                             const token = jwt.sign(
                                 {
                                     email: user[0].email,
@@ -120,9 +123,10 @@ exports.login = function(req, res){
                                 }
                             );
                            return res.status(200).json({
-                                statusCode: '409',
+                                statusCode: '412',
                                 message: 'Authentication Successful',
-                                token: token
+                                token: token,
+                                data: user[0]
                             });
                         } else {
                             return authResult();

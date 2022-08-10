@@ -1,7 +1,7 @@
 
 
 let eventService = require('./../services/event-service');
-let eventObj = require('./../model/event');
+let eventObj = require('./../model/event-request');
 /**
  * handleErrorFunction a function to handle the http errors when called
  *
@@ -34,9 +34,10 @@ exports.list = function (request, response) {
         response.status(200);
         response.json(data);
     };
+    console.log((p + val));
+    if(p){
 
-    if(!(p || val)){
-        eventService.search({ p : val }).then(resolve).catch(errorHandler(response));
+        eventService.search({ [p] : val }).then(resolve).catch(errorHandler(response));
     }else{
         eventService.search({}).then(resolve).catch(errorHandler(response));
     }
@@ -60,6 +61,9 @@ exports.post = function (request, response) {
         .then(resolve)
         .catch(errorHandler(response));
 };
+
+
+
 
 
 /**

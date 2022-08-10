@@ -3,7 +3,7 @@
  */
 
 'use strict';
-
+const checkAuth = require('../middleware/check-auth');
 /**
  * exports the initialization of the api to handle and route the incoming requests
  *
@@ -18,7 +18,7 @@ module.exports = function (expressApp) {
     expressApp.route('/login')
         .post(userController.login);
     expressApp.route('/user/changePassword')
-        .post(userController.changePassword);
+        .post(checkAuth, userController.changePassword);
 
 
     //-- Question
@@ -40,9 +40,9 @@ module.exports = function (expressApp) {
         .delete(questionController.delete);
 
     // -- Answer
-    //TODO uncomment below for issue #11
-    // expressApp.route('/questions/:questionId/answers')
-    //     .put(questionController.putAnswer);
+
+    expressApp.route('/questions/:questionId/answers')
+        .put(questionController.putAnswer);
     // -- Tags
 
     const tagController = require('../controller/tag-controller');
@@ -64,23 +64,69 @@ module.exports = function (expressApp) {
 
     // -- Meeting/Event
 
-    const eventController = require('../controller/event-controller');
-    /**
-     * Routes '/events/' endpoints to get?p='<field>'&val='<Value>' OR Create a new event
+    //const eventController = require('../controller/event-controller');
+    //=================================================================================================================================
+    const eventRequestController = require('../controller/event-request-controller');
+     /**
+     * Routes '/event-request' endpoints to Create a new event request towards attendee
      *
      * @param expressApp
      */
-    expressApp.route('/events')
-        .get(eventController.list)
-        .post(eventController.post);
+    expressApp.route('/events/requests')
+        .post(eventRequestController.post)
+        .get(eventRequestController.list); // create a new request event
 
     /**
-     * Routes '/events/:eventID' endpoints to get, Update, Delete an event
+     * Routes '/event-request' endpoints to Create a new event request towards attendee
      *
-     * @param 'events/:eventID'
+     * @param expressApp
      */
-    expressApp.route('/events/:eventID')
-        .get(eventController.get)
-        .put(eventController.put)
-        .delete(eventController.delete);
+    expressApp.route('/events/requests/:eventRequestID')
+        .put(eventRequestController.put)
+        .get(eventRequestController.get)
+        .delete(eventRequestController.delete); // bring all the event requests
+
+    /**
+     * Routes '/event-request/:eventRequestID' endpoints to Create a new event request towards attendee
+     *
+     * @param expressApp
+     */
+    expressApp.route('/events/requests/organizers/:organizerID')
+        .get(eventRequestController.orgGet);
+        // .put(eventRequestController.orgPut)
+        // .delete(eventRequestController.orgDelete);
+
+
+    /**
+     * Routes '/event-request/:eventRequestID' endpoints to Create a new event request towards attendee
+     *
+     * @param expressApp
+     */
+    expressApp.route('/events/requests/attendees/:attendeeID')
+        .get(eventRequestController.attGet);
+        // .put(eventRequestController.attPut)
+        // .delete(eventRequestController.attDelete);
+
+
+
+
+
+
+//     const icsController = require('../controller/ics-generator');
+//     /**
+//      * Routes '/events/' endpoints to get?p='<field>'&val='<Value>' OR Create a new event
+//      *
+//      * @param expressApp
+//      */
+//     expressApp.route('/ics-generator')
+//         .get(icsController.list)
+//         .post(eventController.post);
+//
+
+
+    //------------------------------------------------------------
 };
+
+
+
+
