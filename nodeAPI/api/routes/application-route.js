@@ -39,6 +39,10 @@ module.exports = function (expressApp) {
         .put(questionController.put)
         .delete(questionController.delete);
 
+    expressApp.route('/questions/user/:userName')
+        .get(questionController.getById);
+        // .put(questionController.put)
+        // .delete(questionController.delete);
     // -- Answer
 
     expressApp.route('/questions/:questionId/answers')

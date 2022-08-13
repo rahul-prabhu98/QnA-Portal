@@ -43,6 +43,18 @@ exports.get = function (questionId) {
 
 /**
  *
+ * @param userName
+ * @returns promise
+ */
+exports.getById = function (userName) {
+    console.log(userName);
+    const getPromise = questionMongoose.find({userName: userName}).exec();
+    console.log(getPromise);
+    return getPromise;
+};
+
+/**
+ *
  * @param questionObj
  * @returns {RegExpExecArray}
  */

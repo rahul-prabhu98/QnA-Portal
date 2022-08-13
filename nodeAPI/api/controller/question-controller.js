@@ -4,6 +4,7 @@ let questionObj = require('./../model/question');
 
 let errorHandler = function(response) {
     let errorFunction = function (error) {
+        console.log(response);
         response.status(500);
         response.json({
             message: error.message
@@ -67,6 +68,21 @@ exports.get = function (request, response) {
         .catch(errorHandler(response));
 };
 
+/**
+ * 
+ * @param request
+ * @param response
+ */
+exports.getById = function (request, response) {
+    const resolve = (question) => {
+        console.log(response);
+        response.status(200);
+        response.json(question);
+    };
+    questionService.getById(request.params.userName)
+        .then(resolve)
+        .catch(errorHandler(response));
+};
 /**
  * Updates and returns a question object in JSON
  * @param request
