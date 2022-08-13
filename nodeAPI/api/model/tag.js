@@ -33,6 +33,10 @@ let tagSchema = new Schema({
     tagCategory: {
         type: String,
         default: 'general'
+    },
+    points:{
+        type: Number,
+        default: 0
     }
 }, {
         versionKey: false

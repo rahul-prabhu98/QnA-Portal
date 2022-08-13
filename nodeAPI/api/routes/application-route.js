@@ -26,8 +26,8 @@ module.exports = function (expressApp) {
     const questionController = require('../controller/question-controller');
 
     expressApp.route('/questions')
-        .get(questionController.list)
-        .post(questionController.post);
+        .get(checkAuth,questionController.list)
+        .post(checkAuth,questionController.post);
 
     /**
      * Routes '/questions/:id' endpoints to get, Update, Delete a question
@@ -35,25 +35,25 @@ module.exports = function (expressApp) {
      * @param 'questions/:id'
      */
     expressApp.route('/questions/:questionId')
-        .get(questionController.get)
-        .put(questionController.put)
-        .delete(questionController.delete);
+        .get(checkAuth,questionController.get)
+        .put(checkAuth,questionController.put)
+        .delete(checkAuth,questionController.delete);
 
     expressApp.route('/questions/user/:userName')
-        .get(questionController.getById);
+        .get(checkAuth,questionController.getById);
         // .put(questionController.put)
         // .delete(questionController.delete);
     // -- Answer
 
     expressApp.route('/questions/:questionId/answers')
-        .put(questionController.putAnswer);
+        .put(checkAuth,questionController.putAnswer);
     // -- Tags
 
     const tagController = require('../controller/tag-controller');
 
     expressApp.route('/tags')
-        .get(tagController.list)
-        .post(tagController.post);
+        .get(checkAuth,tagController.list)
+        .post(checkAuth,tagController.post);
 
     /**
      * Routes '/tags/:tagID' endpoints to get, Update, Delete a tag
@@ -61,9 +61,9 @@ module.exports = function (expressApp) {
      * @param 'tags/:tagID'
      */
     expressApp.route('/tags/:tagID')
-        .get(tagController.get)
-        .put(tagController.put)
-        .delete(tagController.delete);
+        .get(checkAuth,tagController.get)
+        .put(checkAuth,tagController.put)
+        .delete(checkAuth,tagController.delete);
 
 
     // -- Meeting/Event
@@ -77,8 +77,8 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests')
-        .post(eventRequestController.post)
-        .get(eventRequestController.list); // create a new request event
+        .post(checkAuth,eventRequestController.post)
+        .get(checkAuth,eventRequestController.list); // create a new request event
 
     /**
      * Routes '/event-request' endpoints to Create a new event request towards attendee
@@ -86,9 +86,9 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/:eventRequestID')
-        .put(eventRequestController.put)
-        .get(eventRequestController.get)
-        .delete(eventRequestController.delete); // bring all the event requests
+        .put(checkAuth,eventRequestController.put)
+        .get(checkAuth,eventRequestController.get)
+        .delete(checkAuth,eventRequestController.delete); // bring all the event requests
 
     /**
      * Routes '/event-request/:eventRequestID' endpoints to Create a new event request towards attendee
@@ -96,7 +96,7 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/organizers/:organizerID')
-        .get(eventRequestController.orgGet);
+        .get(checkAuth,eventRequestController.orgGet);
         // .put(eventRequestController.orgPut)
         // .delete(eventRequestController.orgDelete);
 
@@ -107,7 +107,7 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/attendees/:attendeeID')
-        .get(eventRequestController.attGet);
+        .get(checkAuth,eventRequestController.attGet);
         // .put(eventRequestController.attPut)
         // .delete(eventRequestController.attDelete);
 
