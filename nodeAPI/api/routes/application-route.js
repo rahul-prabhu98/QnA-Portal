@@ -26,8 +26,8 @@ module.exports = function (expressApp) {
     const questionController = require('../controller/question-controller');
 
     expressApp.route('/questions')
-        .get(checkAuth,questionController.list)
-        .post(checkAuth,questionController.post);
+        .get(questionController.list)
+        .post(questionController.post);
 
     /**
      * Routes '/questions/:id' endpoints to get, Update, Delete a question
@@ -35,25 +35,39 @@ module.exports = function (expressApp) {
      * @param 'questions/:id'
      */
     expressApp.route('/questions/:questionId')
-        .get(checkAuth,questionController.get)
-        .put(checkAuth,questionController.put)
-        .delete(checkAuth,questionController.delete);
+        .get(questionController.get)
+        .put(questionController.put)
+        .delete(questionController.delete);
 
+    
+    /** 
+     * For getting all the questions for given user
+    */
     expressApp.route('/questions/user/:userName')
-        .get(checkAuth,questionController.getById);
+        .get(questionController.getById);
         // .put(questionController.put)
         // .delete(questionController.delete);
     // -- Answer
 
+    /**  
+     * For inserting an answer in a given question
+    */
     expressApp.route('/questions/:questionId/answers')
-        .put(checkAuth,questionController.putAnswer);
+        .post(questionController.insertAnswer);
+    // -- Tags
+    
+    /**
+     * For updating an answer in a given question
+     */
+    expressApp.route('/questions/:questionId/answers')
+        .put(questionController.updateAnswer);
     // -- Tags
 
     const tagController = require('../controller/tag-controller');
 
     expressApp.route('/tags')
-        .get(checkAuth,tagController.list)
-        .post(checkAuth,tagController.post);
+        .get(tagController.list)
+        .post(tagController.post);
 
     /**
      * Routes '/tags/:tagID' endpoints to get, Update, Delete a tag
@@ -61,9 +75,9 @@ module.exports = function (expressApp) {
      * @param 'tags/:tagID'
      */
     expressApp.route('/tags/:tagID')
-        .get(checkAuth,tagController.get)
-        .put(checkAuth,tagController.put)
-        .delete(checkAuth,tagController.delete);
+        .get(tagController.get)
+        .put(tagController.put)
+        .delete(tagController.delete);
 
 
     // -- Meeting/Event
@@ -77,8 +91,8 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests')
-        .post(checkAuth,eventRequestController.post)
-        .get(checkAuth,eventRequestController.list); // create a new request event
+        .post(eventRequestController.post)
+        .get(eventRequestController.list); // create a new request event
 
     /**
      * Routes '/event-request' endpoints to Create a new event request towards attendee
@@ -86,9 +100,9 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/:eventRequestID')
-        .put(checkAuth,eventRequestController.put)
-        .get(checkAuth,eventRequestController.get)
-        .delete(checkAuth,eventRequestController.delete); // bring all the event requests
+        .put(eventRequestController.put)
+        .get(eventRequestController.get)
+        .delete(eventRequestController.delete); // bring all the event requests
 
     /**
      * Routes '/event-request/:eventRequestID' endpoints to Create a new event request towards attendee
@@ -96,7 +110,7 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/organizers/:organizerID')
-        .get(checkAuth,eventRequestController.orgGet);
+        .get(eventRequestController.orgGet);
         // .put(eventRequestController.orgPut)
         // .delete(eventRequestController.orgDelete);
 
@@ -107,7 +121,7 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/attendees/:attendeeID')
-        .get(checkAuth,eventRequestController.attGet);
+        .get(eventRequestController.attGet);
         // .put(eventRequestController.attPut)
         // .delete(eventRequestController.attDelete);
 

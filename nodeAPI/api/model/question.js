@@ -69,8 +69,7 @@ let questionSchema = new Schema({
     }, 
     spamCount: {
         type: Number,
-        min: 0,
-        default: 0
+        min: 0
     },
     isActive: {
         type: Boolean,
