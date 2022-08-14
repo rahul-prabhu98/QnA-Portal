@@ -104,7 +104,12 @@ exports.login = function(req, res){
                         console.log("In here 1");
                         return authResult();
                     };
-
+                    if (user['userStatus'] === false){
+                        return res.status(200).json({
+                            statusCode: '409',
+                            message: 'User is not Active'
+                        })
+                    }
                     bcrypt.compare(req.body.password, user[0].password, (err, result) => {
                         if (err) {
 

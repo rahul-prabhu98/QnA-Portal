@@ -57,9 +57,8 @@ let userSchema =new Schema({
     },
 
     userStatus: {
-        type: String,
-        enum: ["Active", "Suspend", "Deactivate", "Purged"],
-        default: "Active"
+        type: Boolean,
+        default: true
     },
 
     email: {

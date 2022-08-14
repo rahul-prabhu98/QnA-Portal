@@ -54,14 +54,14 @@ module.exports = function (expressApp) {
     */
     expressApp.route('/questions/:questionId/answers')
         .post(questionController.insertAnswer);
-    // -- Tags
+ 
     
     /**
      * For updating an answer in a given question
      */
     expressApp.route('/questions/:questionId/answers')
         .put(questionController.updateAnswer);
-    // -- Tags
+
 
     const tagController = require('../controller/tag-controller');
 
