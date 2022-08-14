@@ -15,6 +15,15 @@ let errorHandler = function(response) {
     return errorFunction;
 };
 
+exports.AnswerFetch = function(request, response){
+    const resolve = (question) => {
+        console.log(question);
+        response.status(200);
+        response.json(question);
+    };
+    questionService.updateAnswerData(request.body.docID).then(resolve).catch(errorHandler(response));
+};
+
 /**
  * Returns a list of questions in JSON based on search parameters
  * @param request
@@ -107,7 +116,7 @@ exports.put = function (request, response) {
  * @param response
  * 
 */
-exports.insertAnswer = function (request, response) {
+exports.putAnswer = function (request, response) {
     let answerObj = Object.assign({},request.body);
     const resolve = (answer) => {
         response.status(200);
@@ -117,21 +126,6 @@ exports.insertAnswer = function (request, response) {
         // console.log(questionId);
         // console.log(answerObj);
         questionService.insertAnswer(questionId, answerObj)
-            .then(resolve)
-            .catch(errorHandler(response));
-    // }
-};
-
-exports.updateAnswer = function (request, response) {
-    let answerObj = Object.assign({},request.body);
-    const resolve = (answer) => {
-        response.status(200);
-        response.json(answer);
-    };
-        let questionId = request.params.questionId;
-        // console.log(questionId);
-        // console.log(answerObj);
-        questionService.updateAnswer(questionId, answerObj)
             .then(resolve)
             .catch(errorHandler(response));
     // }

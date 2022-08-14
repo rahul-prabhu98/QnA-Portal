@@ -75,41 +75,8 @@ exports.insertAnswer = function (questionId, answerObj) {
     //      return answerObj;
     //  } );
     return answerObj;
-}
+};
 
-// findOneAndUpdate(
-//     { "_id": folderId, "permissions._id": permission._id },
-//     { 
-//         "$set": {
-//             "permissions.$": permission
-//         }
-//     },
-//     function(err,doc) {
-
-//     }
-// );
-exports.updateAnswer = function (questionId, answerObj) {    
-    // const targetQuestion = questionMongoose.findOne({ _id: question._id});
-    // questionMongoose.update(
-        // { _id: questionId},
-        // { $push: {answers: answerObj} }
-    // ).exec();
-  
-    return questionMongoose.findOneAndUpdate(
-            { "_id": questionId, "answers._id": answerObj._id },
-            { 
-                "$set": {
-                    "answers.$": answerObj
-                }
-            }
-            // ,
-            // function(err,doc) {
-                // if(err) console.log(err);
-                // else console.log(doc);
-            // }
-        ).exec();
-    // return answerObj;
-}
 /**
  *
  * @param questionID
@@ -117,4 +84,11 @@ exports.updateAnswer = function (questionId, answerObj) {
  */
 exports.delete = function (questionID) {
     return questionMongoose.remove({_id: questionID});
+};
+
+
+exports.updateAnswerData = function(docID){
+    console.log(docID);
+    const promise = questionMongoose.find({"answers": {userName: docID}});
+    return promise;
 };
