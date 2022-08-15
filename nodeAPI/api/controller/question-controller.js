@@ -116,7 +116,7 @@ exports.put = function (request, response) {
  * @param response
  * 
 */
-exports.putAnswer = function (request, response) {
+exports.insertAnswer = function (request, response) {
     let answerObj = Object.assign({},request.body);
     const resolve = (answer) => {
         response.status(200);
@@ -126,6 +126,21 @@ exports.putAnswer = function (request, response) {
         // console.log(questionId);
         // console.log(answerObj);
         questionService.insertAnswer(questionId, answerObj)
+            .then(resolve)
+            .catch(errorHandler(response));
+    // }
+};
+
+exports.updateAnswer = function (request, response) {
+    let answerObj = Object.assign({},request.body);
+    const resolve = (answer) => {
+        response.status(200);
+        response.json(answer);
+    };
+        let questionId = request.params.questionId;
+        // console.log(questionId);
+        // console.log(answerObj);
+        questionService.updateAnswer(questionId, answerObj)
             .then(resolve)
             .catch(errorHandler(response));
     // }
