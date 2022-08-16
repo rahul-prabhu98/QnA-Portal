@@ -33,15 +33,6 @@ let answerSubSchema = new Schema({
             }
 });
 
-answerSubSchema.virtual('id').get(function(){
-    return this._id.toHexString();
-});
-
-answerSubSchema.set('toJSON', {
-    virtuals: true
-});
-
-
 /**
  * Schema defined for Question object
  * @type {mongoose.Schema}

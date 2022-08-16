@@ -39,8 +39,8 @@ module.exports = function (expressApp) {
         .put(checkAuth,questionController.put)
         .delete(checkAuth,questionController.delete);
 
-
-    /**
+    
+    /** 
      * For getting all the questions for given user
     */
     expressApp.route('/questions/user/:userName')
@@ -49,13 +49,13 @@ module.exports = function (expressApp) {
         // .delete(questionController.delete);
     // -- Answer
 
-    /**
+    /**  
      * For inserting an answer in a given question
     */
     expressApp.route('/questions/:questionId/answers')
         .post(questionController.insertAnswer);
-
-
+ 
+    
     /**
      * For updating an answer in a given question
      */
@@ -66,7 +66,7 @@ module.exports = function (expressApp) {
     const tagController = require('../controller/tag-controller');
 
     expressApp.route('/tags')
-        .get(tagController.list)
+        .get(checkAuth,tagController.list)
         .post(checkAuth,tagController.post);
 
     /**
