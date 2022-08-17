@@ -75,7 +75,7 @@ exports.insertAnswer = function (questionId, answerObj) {
     //      return answerObj;
     //  } );
     return answerObj;
-}
+};
 
 // findOneAndUpdate(
 //     { "_id": folderId, "permissions._id": permission._id },
@@ -117,4 +117,11 @@ exports.updateAnswer = function (questionId, answerObj) {
  */
 exports.delete = function (questionID) {
     return questionMongoose.remove({_id: questionID});
+};
+
+
+exports.updateAnswerData = function(docID){
+    console.log(docID);
+    const promise = questionMongoose.find({"answers": {userName: docID}});
+    return promise;
 };

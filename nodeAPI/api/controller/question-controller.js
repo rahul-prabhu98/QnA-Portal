@@ -15,6 +15,15 @@ let errorHandler = function(response) {
     return errorFunction;
 };
 
+exports.AnswerFetch = function(request, response){
+    const resolve = (question) => {
+        console.log(question);
+        response.status(200);
+        response.json(question);
+    };
+    questionService.updateAnswerData(request.body.docID).then(resolve).catch(errorHandler(response));
+};
+
 /**
  * Returns a list of questions in JSON based on search parameters
  * @param request

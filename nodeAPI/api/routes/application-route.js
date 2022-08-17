@@ -26,8 +26,8 @@ module.exports = function (expressApp) {
     const questionController = require('../controller/question-controller');
 
     expressApp.route('/questions')
-        .get(checkAuth,questionController.list)
-        .post(checkAuth,questionController.post);
+        .get(questionController.list)
+        .post(questionController.post);
 
     /**
      * Routes '/questions/:id' endpoints to get, Update, Delete a question
@@ -35,27 +35,27 @@ module.exports = function (expressApp) {
      * @param 'questions/:id'
      */
     expressApp.route('/questions/:questionId')
-        .get(checkAuth,questionController.get)
-        .put(checkAuth,questionController.put)
-        .delete(checkAuth,questionController.delete);
+        .get(questionController.get)
+        .put(questionController.put)
+        .delete(questionController.delete);
 
-    
-    /** 
+
+    /**
      * For getting all the questions for given user
     */
     expressApp.route('/questions/user/:userName')
-        .get(checkAuth,questionController.getById);
+        .get(questionController.getById);
         // .put(questionController.put)
         // .delete(questionController.delete);
     // -- Answer
 
-    /**  
+    /**
      * For inserting an answer in a given question
     */
     expressApp.route('/questions/:questionId/answers')
         .post(questionController.insertAnswer);
- 
-    
+
+
     /**
      * For updating an answer in a given question
      */
@@ -66,7 +66,7 @@ module.exports = function (expressApp) {
     const tagController = require('../controller/tag-controller');
 
     expressApp.route('/tags')
-        .get(checkAuth,tagController.list)
+        .get(tagController.list)
         .post(checkAuth,tagController.post);
 
     /**
