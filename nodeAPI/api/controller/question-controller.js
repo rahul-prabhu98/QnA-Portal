@@ -4,6 +4,7 @@ let questionObj = require('./../model/question');
 
 /**
  * Handles the http error on the server side
+ *
  * @param response
  * @returns {errorFunction}
  */
@@ -22,8 +23,9 @@ let errorHandler = function(response) {
 
 
 /**
- * fetch method to get the corresponding answers pertaining
- * to a question
+ * fetch method to get the corresponding answers pertaining to a question
+ * returns a question obj
+ *
  * @param request
  * @param response
  * @constructor
@@ -39,6 +41,7 @@ exports.AnswerFetch = function(request, response){
 
 /**
  * Returns a list of questions in JSON based on search parameters
+ *
  * @param request
  * @param response
  */
@@ -60,7 +63,9 @@ exports.list = function (request, response) {
 
 
 /**
- * Creates a new tag with the request JSON and returns question type JSON object
+ * Creates a new tag with the request JSON
+ * returns question type JSON object
+ *
  * @param request
  * @param response
  */
@@ -77,6 +82,7 @@ exports.post = function (request, response) {
 
 /**
  * Returns a question obj in JSON
+ *
  * @param request
  * @param response
  */
@@ -93,6 +99,7 @@ exports.get = function (request, response) {
 /**
  * returns a JSON question Object
  * searching it by ID
+ *
  * @param request
  * @param response
  */
@@ -109,6 +116,7 @@ exports.getById = function (request, response) {
 
 /**
  * Updates and returns a question object in JSON
+ *
  * @param request
  * @param response
  */
@@ -127,6 +135,8 @@ exports.put = function (request, response) {
 
 /** 
  * Adds a new answer to the given question
+ * returns answer obj
+ * 
  * @param request
  * @param response
  * 
@@ -148,7 +158,8 @@ exports.insertAnswer = function (request, response) {
 
 /**
  * update method to update the answer to a pertaining question
- * and returns the answer object
+ * returns the answer object
+ *
  * @param request
  * @param response
  */
@@ -168,7 +179,8 @@ exports.updateAnswer = function (request, response) {
 };
 
 /**
- * Deletes a question object.
+ * Deletes a question object
+ *
  * @param request
  * @param response
  */

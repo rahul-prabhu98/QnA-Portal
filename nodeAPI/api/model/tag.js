@@ -15,7 +15,7 @@ const Schema = mongoose.Schema;
 let tagSchema = new Schema({
     tagName: {
         type: String,
-        required: "Intrested tags are required",
+        required: "Interested tags are required",
         unique: "Tags should be unique"
     },
     dateCreated: {

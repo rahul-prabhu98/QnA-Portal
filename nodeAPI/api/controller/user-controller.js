@@ -1,12 +1,23 @@
 
 'use strict';
 
+/**
+ * importing the objects of user model, service, tag model, jwtToken
+ */
+
 const userService = require('../services/user-services');
 const User = require('../model/user');
 const Tag = require('../model/tag')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+/**
+ * signup function for user registration, takes the username and password
+ * stores the hashed password
+ *
+ * @param req
+ * @param res
+ */
 exports.signup = function (req, res) {
     //const newUser = Object.assign({}, req.body);  --Commented and reimplemented below for proper structuring of Data
     userService.fetchData('userName', req.body.userName).then(
@@ -88,6 +99,13 @@ exports.signup = function (req, res) {
     );
 };
 
+/**
+ * authenticates the login parameters and implements JWT Token
+ * returns the user object
+ *
+ * @param req
+ * @param res
+ */
 exports.login = function(req, res){
 
     const authResult = () => {
@@ -147,6 +165,13 @@ exports.login = function(req, res){
 
 };
 
+/**
+ * fetch the username, match the old hashed password, update the new password and hash it
+ * returns updated user Object
+ *
+ * @param req
+ * @param res
+ */
 exports.changePassword = function(req, res){
     const authResult = () => {
 
@@ -169,7 +194,7 @@ exports.changePassword = function(req, res){
                             if (err) {
                                 return res.status(500).json({
                                     statusCode: '409',
-                                    message: 'Internal Server Error occured',
+                                    message: 'Internal Server Error occurred',
                                     data: []
                                 });
                             } else {
