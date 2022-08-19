@@ -20,7 +20,7 @@ let errorHandler = function(response) {
 };
 
 /**
- * Returns a list of eventObj in JSON based on the
+ * Returns a list of todoObj in JSON based on the
  * search parameters.
  *
  * @param request
