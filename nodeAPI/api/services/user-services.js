@@ -24,3 +24,16 @@ exports.updateData = function(userName, parameter, value){
     const promise = User.findOneAndUpdate({'userName': userName}, {$set:{[parameter]: value}}, {useFindAndModify: false});
     return promise;
 };
+
+exports.updatePoints = function(userName, point){
+    const promise = User.findOneAndUpdate()
+}
+
+
+exports.updatePoints = function (userName, points) {
+
+    const promise = User.findOneAndUpdate(
+        {'userName': userName}, {$inc: {'points': points}}
+    );
+    return promise;
+}

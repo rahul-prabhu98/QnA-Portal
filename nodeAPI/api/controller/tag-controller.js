@@ -1,7 +1,15 @@
-
+/**
+ * including the tag service and tag model
+ */
 let tagService = require('./../services/tag-service');
 let tagObj = require('./../model/tag');
 
+
+/**
+ * Handles the http error on the server side
+ * @param response
+ * @returns {errorFunction}
+ */
 let errorHandler = function(response) {
     let errorFunction = function (error) {
         response.status(500);

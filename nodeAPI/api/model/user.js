@@ -39,8 +39,7 @@ let userSchema =new Schema({
     },
 
     interestedTags:[{
-        type: Schema.ObjectId,
-        ref: 'tags'
+        type: String
     }],
 
     userName: {
@@ -86,7 +85,13 @@ let userSchema =new Schema({
 
     createdDate: {
         type: Date
+    },
+
+    points: {
+        type: Number,
+        default: 10
     }
+
 }, {
     versionKey: false
 });

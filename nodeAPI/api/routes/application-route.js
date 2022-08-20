@@ -26,8 +26,8 @@ module.exports = function (expressApp) {
     const questionController = require('../controller/question-controller');
 
     expressApp.route('/questions')
-        .get(questionController.list)
-        .post(questionController.post);
+        .get(checkAuth, questionController.list)
+        .post(checkAuth, questionController.post);
 
     /**
      * Routes '/questions/:id' endpoints to get, Update, Delete a question
@@ -35,16 +35,16 @@ module.exports = function (expressApp) {
      * @param 'questions/:id'
      */
     expressApp.route('/questions/:questionId')
-        .get(questionController.get)
-        .put(questionController.put)
-        .delete(questionController.delete);
+        .get(checkAuth, questionController.get)
+        .put(checkAuth, questionController.put)
+        .delete(checkAuth, questionController.delete);
 
 
     /**
      * For getting all the questions for given user
     */
     expressApp.route('/questions/user/:userName')
-        .get(questionController.getById);
+        .get(checkAuth, questionController.getById);
         // .put(questionController.put)
         // .delete(questionController.delete);
     // -- Answer
@@ -53,14 +53,14 @@ module.exports = function (expressApp) {
      * For inserting an answer in a given question
     */
     expressApp.route('/questions/:questionId/answers')
-        .post(questionController.insertAnswer);
+        .post(checkAuth, questionController.insertAnswer);
 
 
     /**
      * For updating an answer in a given question
      */
     expressApp.route('/questions/:questionId/answers')
-        .put(questionController.updateAnswer);
+        .put(checkAuth, questionController.updateAnswer);
 
 
     const tagController = require('../controller/tag-controller');
@@ -91,8 +91,8 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests')
-        .post(eventRequestController.post)
-        .get(eventRequestController.list); // create a new request event
+        .post(checkAuth,eventRequestController.post)
+        .get(checkAuth,eventRequestController.list); // create a new request event
 
     /**
      * Routes '/event-request' endpoints to Create a new event request towards attendee
@@ -100,9 +100,9 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/:eventRequestID')
-        .put(eventRequestController.put)
-        .get(eventRequestController.get)
-        .delete(eventRequestController.delete); // bring all the event requests
+        .put(checkAuth,eventRequestController.put)
+        .get(checkAuth,eventRequestController.get)
+        .delete(checkAuth,eventRequestController.delete); // bring all the event requests
 
     /**
      * Routes '/event-request/:eventRequestID' endpoints to Create a new event request towards attendee
@@ -110,7 +110,7 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/organizers/:organizerID')
-        .get(eventRequestController.orgGet);
+        .get(checkAuth,eventRequestController.orgGet);
         // .put(eventRequestController.orgPut)
         // .delete(eventRequestController.orgDelete);
 
@@ -121,11 +121,12 @@ module.exports = function (expressApp) {
      * @param expressApp
      */
     expressApp.route('/events/requests/attendees/:attendeeID')
-        .get(eventRequestController.attGet);
+        .get(checkAuth,eventRequestController.attGet);
         // .put(eventRequestController.attPut)
         // .delete(eventRequestController.attDelete);
 
-
+    expressApp.route('/skillboard/score')
+        .put(userController.updatePoints)
 
 
 
