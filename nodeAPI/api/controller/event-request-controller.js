@@ -1,4 +1,6 @@
-
+/**
+ * including the service object and event-request object
+ */
 
 let eventService = require('../services/event-service');
 let eventRequestObj = require('./../model/event-request');

@@ -125,4 +125,3 @@ exports.updateAnswerData = function(docID){
     const promise = questionMongoose.find({"answers": {userName: docID}});
     return promise;
 };
-

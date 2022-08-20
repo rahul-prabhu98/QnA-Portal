@@ -125,8 +125,7 @@ module.exports = function (expressApp) {
         // .put(eventRequestController.attPut)
         // .delete(eventRequestController.attDelete);
 
-    expressApp.route('/skillboard/score')
-        .post(userController.updatePoints)
+
 
 
 
