@@ -1,0 +1,57 @@
+
+<div class="card">
+
+  <div class="card-body">
+    <br>
+    <div *ngFor="let question of pageOfItems">
+      <!----><br>
+      <div class="card">
+        <div class="card-header bg-light">
+          <small class="blockquote font-italic lead">Question :</small>
+          <h3><span (click)="onQuestionItemClick(question)">{{question.title}}</span></h3>
+        </div>
+        <div class="card-body bg-white">
+          <small class="blockquote font-italic lead">Description :</small><br>
+          {{question.description}}
+          <!--     Answer Card    -->
+          <!--        /// Answer Card  -->
+        </div>
+        <div class="card-footer">
+          <ul class="list-inline justify-content-between">
+            <li class="list-inline-item">
+              <h6><span class="badge badge-dark">Answers <span class="badge badge-light">{{question.answers.length}} </span></span></h6>
+            </li>
+            <li class="list-inline-item">
+              Posted on: {{question.dateCreated | date: 'medium'}}
+            </li>
+            <li class="list-inline-item">
+              Posted by: {{question.userName}}
+            </li>
+            <li class="list-inline-item">
+              <button class="btn " (click)="setMeeting(question)"><fa-icon
+                [icon] = "faCalendarAlt">
+              </fa-icon></button>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+
+
+      <!--      -----------------------------                         -->
+
+      <!--        <div class="top-answer"><br>{{question.topAnswerUser}}: {{question.topAnswerContent}}</div>-->
+
+    </div>   <!-- //This one is for loop-->
+    <br>
+
+    <!--      -->
+  </div>
+</div>
+
+
+<!---->
+<div class="card-footer pb-0 pt-3">
+  <jw-pagination [items]="questions" [pageSize]="6" (changePage)="onChangePage($event)"></jw-pagination>
+</div>

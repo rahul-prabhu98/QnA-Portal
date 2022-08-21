@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="card bg-white">
+    <div class="card-header">
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <h3 class="text-primary" for="exampleInputEmail1">Type a question</h3>
+            <input type="text" class="form-control" id="question" aria-describedby="question-help" name="question"
+                   [(ngModel)]="questionData.title" placeholder="Question Here">
+          </div>
+          <br>
+          <div class="form-group">
+            <h3 class="text-primary">Tags</h3>
+
+            <tag-input
+              [(ngModel)]="tags"
+              name="tagsLst"
+              [onlyFromAutocomplete]="true">
+              <tag-input-dropdown [showDropdownIfEmpty]="true"
+                                  [identifyBy]="'_id'"
+                                  [displayBy]="'tagName'"
+                                  [autocompleteItems]="tagsList">
+              </tag-input-dropdown>
+            </tag-input>
+
+
+          </div>
+          <br>
+          <div class="form-group">
+            <h3 class="text-primary" for="exampleInputPassword1">Text Editor</h3>
+            <ckeditor [editor]="Editor" [(ngModel)]="questionData.description" name="editor"></ckeditor>
+            <br><br>
+            <button type="submit" class="btn btn-primary" (click)="createQuestion()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>

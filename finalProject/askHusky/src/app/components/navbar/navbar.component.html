@@ -1,0 +1,40 @@
+<!--<nav class="navbar navbar-expand-lg navbar-light bg-light">-->
+<!--  <a class="navbar-brand" href="#">Navbar</a>-->
+
+<!--<div class="float-right">-->
+<!--  <label id="userNameLabel">{{ user.userName}}</label>-->
+<!--  <a routerLink="/request-events" routerLinkActive="active-link">Bob</a>-->
+<!--<form class="form-inline my-2 my-lg-0 float-right">-->
+<!--  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="goToProfile();">Profile</button>-->
+<!--  <button class="btn btn-outline-success my-2 my-sm-0" type="submit" routerLink="/dashboard/create-question" >Create aquestion</button>-->
+<!--&lt;!&ndash;  (click)="goToCreateQuestion();"&ndash;&gt;-->
+<!--</form>-->
+<!--</div>-->
+<!--</nav>-->
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark align-content-end">
+  <!-- Brand -->
+  <a class="navbar-brand" routerLink="/dashboard">HOME</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav mx-1">
+    <li class="nav-item">
+      <button routerLink="/dashboard/questions/add" class="btn btn-outline-light mx-1">Ask Question</button>
+    </li>
+    <li class="nav-item">
+      <button routerLink="/dashboard/requests/view" class="btn btn-outline-light mx-1">My Meetings</button>
+    </li>
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown dropdown-menu-right mx-1">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        {{user.userName}}
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/dashboard/profile">View Profile</a>
+        <a class="dropdown-item" routerLink="/dashboard/changePassword">Change Password</a>
+        <a class="dropdown-item" routerLink="/x">Logout</a>
+      </div>
+    </li>
+  </ul>
+</nav>

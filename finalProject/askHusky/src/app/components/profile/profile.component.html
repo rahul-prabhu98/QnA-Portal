@@ -1,0 +1,28 @@
+
+
+<div class="container col-5">
+  <div class="card">
+    <div class="card-header text-center">
+      <h4> Change Password</h4>
+    </div>
+    <div class="card-body">
+
+      <form class="was-validated">
+      <div class="form-group">
+        <label for="username">Username: </label>
+        <input type="text" class="form-control" name="username" id="username" [ngModel]="changePasswordObj.userName">
+      </div>
+      <div class="form-group">
+        <label for="oldPassword">Old Password: </label>
+        <input type="password" class="form-control" name="password" id="oldPassword" [(ngModel)]="changePasswordObj.oldPassword">
+      </div>
+          <div class="form-group">
+            <label for="newPassword">Password: </label>
+            <input type="password" class="form-control" name="reTypePassword" id="newPassword" [(ngModel)]="changePasswordObj.newPassword">
+      </div>
+
+      <button class="btn btn-group-lg btn-outline-warning justify-content-center" (click)="changePassword()">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

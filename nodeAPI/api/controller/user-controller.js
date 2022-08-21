@@ -233,6 +233,13 @@ exports.updatePoints = function(req, res){
         })
     )
 };
+/**
+ * error callback function
+ *
+ * @param response
+ * @returns {errorCallback}
+ */
+
 
 let renderErrorResponse = (response) => {
     console.log("In here");

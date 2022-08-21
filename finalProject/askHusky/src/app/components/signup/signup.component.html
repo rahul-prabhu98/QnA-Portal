@@ -1,0 +1,132 @@
+
+<form (ngSubmit)="signupUser()" id="regForm">
+  <aw-wizard navBarLocation = "">
+    <aw-wizard-step stepTitle="Title of step 1">
+      <br><br>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">First Name:</span>
+        </div>
+        <input class="form-control" required #firstname="ngModel"
+               [class.is-invalid]="firstname.invalid && firstname.touched"
+               type = "text" name="firstname" id="firstname" [(ngModel)]="user.firstName">
+        <small class="text-danger" [class.d-none]="firstname.valid || firstname.untouched">First name is required</small>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Last Name:</span>
+        </div>
+        <input class="form-control" required #lastName="ngModel"
+               [class.is-invalid]="lastName.invalid && lastName.touched"
+               type = "text" name="lastname" id="lastname" [(ngModel)]="user.lastName">
+        <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">Last name is required</small>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Phone no:</span>
+        </div>
+        <input class="form-control" required type = "text"  #phoneno="ngModel"
+               [class.is-invalid]="phoneno.invalid && phoneno.touched"
+               name="phoneno" id="phoneno" [(ngModel)]="user.phoneNo" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+        <small class="text-danger" [class.d-none]="phoneno.valid || phoneno.untouched">Phone no should be of 10 digits</small>
+      </div>
+
+      <button class = "btn btn-outline-primary" type="button" awNextStep>Next Step</button>
+    </aw-wizard-step>
+
+    <aw-wizard-step stepTitle="Title of step 2">
+      <br><br>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">College Name: </span>
+        </div>
+        <input class="form-control"  type = "text" name="collegeName" id="collegeName" [(ngModel)]="user.collegeName">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Degree: </span>
+        </div>
+        <input class="form-control" type = "text" name="degree" id = "degree" [(ngModel)]="user.degree">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Course: </span>
+        </div>
+        <input class="form-control" type = "text" name="course" id = "course" [(ngModel)]="user.course">
+      </div>
+
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Graduation Year:  </span>
+        </div>
+        <input class="form-control" type = "date" name="course" id = "graduationYear" [(ngModel)]="user.graduationYear">
+      </div>
+
+      <button class = "btn btn-outline-primary"  type="button" awPreviousStep>Go to previous step</button>&nbsp;&nbsp;
+      <button  class = "btn btn-outline-primary"  type="button" awNextStep>Go to next step</button>
+    </aw-wizard-step>
+
+
+    <aw-wizard-step stepTitle="Title of step 3">
+      <br><br>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Email ID:</span>
+        </div>
+        <input class="form-control" required type = "text"  #email="ngModel"
+               [class.is-invalid]="email.invalid && email.touched"
+               name="email" id="email" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <small class="text-danger" [class.d-none]="email.valid || email.untouched">Incorrect Email!</small>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Username:</span>
+        </div>
+        <input class="form-control"  required type = "text" #username="ngModel"
+               [class.is-invalid]="username.invalid && username.touched"
+               name="username" id="username" [(ngModel)]="user.userName" pattern="[A-Za-z0-9]+">
+        <small class="text-danger" [class.d-none]="username.valid || username.untouched">Username should contain letters and numbers</small>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Password:</span>
+        </div>
+        <input class="form-control" required type = "password" #password="ngModel"
+               [class.is-invalid]="password.invalid && password.touched"
+               name="password" id = "password" [(ngModel)]="user.password">
+        <small class="text-danger" [class.d-none]="lastName.valid || lastName.untouched">Password is required</small>
+      </div>
+
+      <button  class = "btn btn-outline-primary"type="button" awPreviousStep>Go to previous step</button>&nbsp;&nbsp;
+      <button class = "btn btn-outline-primary" type="button" awNextStep>Go to next step</button>
+    </aw-wizard-step>
+
+
+
+
+    <aw-wizard-step stepTitle="Title of step 3">
+      <br><br>
+      <tag-input
+        [(ngModel)]="tags"
+        name = "tagsLst"
+        [onlyFromAutocomplete]="true">
+        <tag-input-dropdown [showDropdownIfEmpty]="true"
+                            [identifyBy]="'_id'"
+                            [displayBy]="'tagName'"
+                            [autocompleteItems]="tagsList">
+        </tag-input-dropdown>
+      </tag-input>
+      <br><br><br>
+      <button class = "btn btn-outline-primary" type="button" awPreviousStep>Previous Step</button>&nbsp;&nbsp;
+      <button class = "btn btn-outline-primary" type = "submit">SIGNUP</button>
+
+    </aw-wizard-step>
+
+  </aw-wizard>
+</form>

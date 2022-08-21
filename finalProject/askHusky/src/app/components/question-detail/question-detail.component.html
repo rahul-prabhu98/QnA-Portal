@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="card">
+        <div class="card-header"><h4>{{selectedQuestion.title}}</h4></div>
+        <div class="card-body bg-light">
+          {{selectedQuestion.description}}
+        </div>
+        <div class="card-footer">
+          <span *ngFor="let tag of selectedQuestion.tags" class="badge badge-pill badge-danger">
+             {{tag}}
+          </span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header"><h4 > Type your answer</h4></div>
+        <div class="card-body">
+          <!--...--------------------------text editor----------->
+          <form>
+            <div class="form-group">
+              <ckeditor [editor]="Editor" [(ngModel)]="answer.answer" name="editor"></ckeditor>
+              <br><br>
+              <button type="submit" class="btn btn-primary" (click)="createAnswer()" >
+                Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!------------------------answering ends----- -->
+      <div class="card">
+        <div class="card-header"><h5>Answers:</h5></div>
+        <div class="card-body">
+          <div *ngFor="let answer of selectedQuestion.answers">
+            <!--            -->
+            <div class="row">
+              <div class="col-2">
+                <div (click)="upvote(answer)">
+                  <fa-icon [icon] = "faArrowCircleUp"></fa-icon>
+                </div>
+                <span
+                  class="answer-score">{{answer.upvotes-answer.downvotes}}
+                </span>
+                <div (click)="downvote(answer)">
+                  <fa-icon
+                    [icon] = "faArrowCircleDown">
+                  </fa-icon>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="card">
+                  <div class="card-body">{{answer.answer}}</div>
+                  <div class="card-footer">
+                    Posted By : {{answer.userName}}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+<br><hr><br>
+            <!--            -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
